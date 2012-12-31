@@ -19,4 +19,8 @@ class Mod {
 	String toString() {
 		return "${modName} v${modVersion}"
 	}
+	
+	static mapping = {
+		version false
+	}
 }

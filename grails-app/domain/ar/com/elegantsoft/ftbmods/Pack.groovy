@@ -16,4 +16,8 @@ class Pack {
 	String toString() {
 		return "${packName} v${packVersion}"
 	}
+	
+	static mapping = {
+		version false
+	}
 }

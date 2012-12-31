@@ -2,25 +2,24 @@ package ar.com.elegantsoft.ftbmods
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
-class Item {
+class Item implements Serializable {
 	String priId
 	String secId
 	String name
 	String pic
 
-    static constraints = {
-		priId nullable: false, blank: false, size:10
-		secId nullable: false, blank: false, size:10
+	static constraints = {
+		priId nullable: false, blank: false, size:1..10
+		secId nullable: false, blank: false, size:1..10
 		name nullable: false, blank: false
 		pic blank: true
     }
 	
 	static mapping = {
 		version false
-		id column: ['priId','secId'], 
-			type: 'text',
-			generator: 'assigned',
-			index: 'ID_Idx'
+		id column: 'item_id'
+		id composite: ['priId','secId'], 
+			generator: 'assigned'
 	}
 	
 	boolean equals(other) {
