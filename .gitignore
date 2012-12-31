@@ -1,0 +1,18 @@
+# Can ignore specific files
+.DS_Store
+
+# Use wildcards as well
+*~
+*.swp
+*.class
+.eclipse
+.project
+.classpath
+.cache
+.externalToolBuilders
+/.settings
+
+# Can also ignore all directories and files in a directory.
+/target
+/target-eclipse
+/.link_to_grails_plugins
