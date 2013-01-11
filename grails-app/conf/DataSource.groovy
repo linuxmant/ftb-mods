@@ -23,7 +23,7 @@ environments {
     }
     test {
         dataSource {
-            dbCreate = "update"
+            dbCreate = "create"
             url = "jdbc:h2:ftbmods-test"
             driverClassName = "org.h2.Driver"
             username = "sa"

@@ -9,6 +9,7 @@ import org.junit.*
 @TestFor(Item)
 class ItemTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }

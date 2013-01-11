@@ -8,18 +8,18 @@ class Item implements Serializable {
 	String name
 	String pic
 
+	static belongsTo = { recipe: Recipe }
+	
 	static constraints = {
 		priId nullable: false, blank: false, size:1..10
-		secId nullable: false, blank: false, size:1..10
+		secId nullable: false, blank: true, size:1..10, default: 0
 		name nullable: false, blank: false
 		pic blank: true
+		recipe: nullable: true
     }
 	
 	static mapping = {
 		version false
-		id column: 'item_id'
-		id composite: ['priId','secId'], 
-			generator: 'assigned'
 	}
 	
 	boolean equals(other) {
@@ -27,7 +27,7 @@ class Item implements Serializable {
 			return false
 		}
 
-		other.priId(priId) && other.secId.equals(secId)
+		other.priId.equals(priId) && other.secId.equals(secId)
 	}
 
 	int hashCode() {
@@ -37,7 +37,8 @@ class Item implements Serializable {
 		builder.toHashCode()
 	}
 
-	String toStrine() {
+	@Override
+	String toString() {
 		Integer.parseInt(secId) > 0?"${priId}:${secId} ${name}":"${priId} ${name}"
 	}
 }

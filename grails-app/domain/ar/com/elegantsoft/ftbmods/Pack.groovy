@@ -3,9 +3,9 @@ package ar.com.elegantsoft.ftbmods
 class Pack {
 	String packName
 	Double packVersion
-	Set<Mod> packMods
+	Set packMods
 
-	static hasMany = [mods:Mod]
+	static hasMany = [packMods:Mod]
 
     static constraints = {
 		packName nullable: false, blank: false

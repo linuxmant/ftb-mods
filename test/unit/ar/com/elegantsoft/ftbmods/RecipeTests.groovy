@@ -11,6 +11,7 @@ import org.junit.*
 @TestFor(Recipe)
 class RecipeTests {
 
+	@Ignore
     void testSomething() {
        fail "Implement me"
     }
