@@ -2,24 +2,30 @@ package ar.com.elegantsoft.ftbmods
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 
-class Item implements Serializable {
+class Item {
 	String priId
-	String secId
+	String secId = 0
 	String name
 	String pic
-
-	static belongsTo = { recipe: Recipe }
+	String fullId
 	
+	static belongsTo = [mod: Modif]
+	
+	static transients = {fullId}
+
 	static constraints = {
-		priId nullable: false, blank: false, size:1..10
-		secId nullable: false, blank: true, size:1..10, default: 0
-		name nullable: false, blank: false
-		pic blank: true
-		recipe: nullable: true
+		priId nullable: false, blank: false, size:1..10,
+			unique: 'secId', index: 'item_unique_pri_sec_idx'
+		secId nullable: false, blank: true, size:1..10
+		name nullable: false, blank: false, maxSize: 50
+		pic nullable: true, blank: true, maxSize: 50
+		mod nullable:false, blank: true, default: 0
     }
 	
 	static mapping = {
 		version false
+//		priId unique: 'secId', index: 'item_unique_pri_sec_idx'
+//		secId unique: true, index: 'item_unique_pri_sec_idx'
 	}
 	
 	boolean equals(other) {
@@ -39,6 +45,10 @@ class Item implements Serializable {
 
 	@Override
 	String toString() {
-		Integer.parseInt(secId) > 0?"${priId}:${secId} ${name}":"${priId} ${name}"
+		secId !="0"?"${priId}:${secId} ${name}":"${priId} ${name}"
+	}
+	
+	String getFullId() {
+		secId !="0"?"${priId}:${secId}":"${priId}"
 	}
 }
