@@ -1,0 +1,1 @@
+This web application gathers all the info in FTB's modpacks' mods, and lets the user browse recipes and/or list ALL the materials needed for specific items.
